@@ -45,7 +45,7 @@ export default async function CriticaIndividual({
   return (
     <main className="min-h-screen bg-[#0B0B0F] text-white">
       {/* Banner cinematográfico */}
-      <section className="relative flex min-h-[75vh] items-end overflow-hidden px-6 pb-16 pt-40 md:px-16 md:pb-24">
+      <section className="relative flex min-h-[65svh] items-end overflow-hidden px-6 pb-12 pt-24 md:min-h-[75vh] md:px-16 md:pb-24 md:pt-40">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
