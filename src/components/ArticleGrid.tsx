@@ -1,28 +1,41 @@
 
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import { artigos } from "@/data/artigos";
+import { reflexoes } from "@/data/reflexoes";
+
+const critica = artigos.find((artigo) => artigo.slug === "hamnet");
+const reflexao = reflexoes[0];
 
 const articles = [
-  {
-    category: "Crítica",
-    title: "O peso do que não é dito",
-    description: "Sobre silêncio, linguagem e aquilo que permanece.",
-    image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=900",
-    href: "/criticas",
-  },
-  {
-    category: "Reflexão",
-    title: "A delicadeza das ausências",
-    description: "Sobre aquilo que permanece, mesmo quando já se foi.",
-    image:
-      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=900",
-    href: "/reflexoes",
-  },
+  ...(critica
+    ? [
+        {
+          category: "Crítica",
+          title: critica.titulo,
+          description: critica.subtitulo,
+          image: critica.imagem,
+          href: `/criticas/${critica.slug}`,
+        },
+      ]
+    : []),
+  ...(reflexao
+    ? [
+        {
+          category: "Reflexão",
+          title: reflexao.titulo,
+          description: reflexao.descricao,
+          image:
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=900",
+          href: `/reflexoes/${reflexao.slug}`,
+        },
+      ]
+    : []),
   {
     category: "Em Cartaz",
-    title: "O cinema e seus novos horizontes",
-    description: "Histórias, estreias e novidades do entretenimento.",
+    title: "O cinema além da tela",
+    description:
+      "Um espaço para acompanhar histórias, estreias e novidades do entretenimento.",
     image:
       "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=900",
     href: "/em-cartaz",
@@ -33,12 +46,13 @@ export default function ArticleGrid() {
   return (
     <section className="bg-[#0B0B0F] px-6 py-24 md:px-16">
       <div className="mx-auto max-w-[1500px]">
+
         {/* Título da seção */}
         <Reveal>
           <div className="mb-12 flex items-end justify-between gap-6">
             <div>
               <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#B58ADF]">
-                02 / Últimos textos
+                02 / Seleção editorial
               </p>
 
               <h2 className="font-serif text-4xl leading-tight md:text-6xl">
@@ -53,16 +67,16 @@ export default function ArticleGrid() {
               href="/criticas"
               className="hidden border-b border-[#A875D6] pb-2 text-xs uppercase tracking-widest text-[#B58ADF] transition-colors hover:text-white md:block"
             >
-              Ver todos →
+              Explorar críticas →
             </Link>
           </div>
         </Reveal>
 
-        {/* Cards animados */}
+        {/* Cards */}
         <div className="grid gap-6 md:grid-cols-3">
           {articles.map((article, index) => (
             <Reveal
-              key={article.title}
+              key={article.href}
               delay={index * 0.12}
               className="h-full"
             >
@@ -75,7 +89,7 @@ export default function ArticleGrid() {
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                     style={{
-                      backgroundImage: `url('${article.image}')`,
+                      backgroundImage: `url("${article.image}")`,
                     }}
                   />
 
@@ -92,7 +106,7 @@ export default function ArticleGrid() {
                     {article.title}
                   </h3>
 
-                  <p className="text-sm leading-6 text-gray-400">
+                  <p className="mb-7 text-sm leading-6 text-gray-400">
                     {article.description}
                   </p>
 
@@ -102,7 +116,10 @@ export default function ArticleGrid() {
                       Fora do Quadro
                     </span>
 
-                    <span className="text-xl text-[#B58ADF] transition-transform group-hover:translate-x-2">
+                    <span
+                      aria-hidden="true"
+                      className="text-xl text-[#B58ADF] transition-transform duration-300 group-hover:translate-x-2"
+                    >
                       →
                     </span>
                   </div>

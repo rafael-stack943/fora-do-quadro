@@ -14,54 +14,57 @@ export default function FeaturedArticle() {
         <Reveal>
           <div>
             <p className="mb-6 text-xs uppercase tracking-[0.3em] text-[#B58ADF]">
-              01 / Em destaque — Ensaio
+              01 / Em destaque — Crítica
             </p>
 
             <h2 className="font-serif text-5xl leading-[1.1] md:text-6xl">
-              As histórias
+              O amor que
               <br />
-              que nos
+              permanece
               <br />
               <span className="italic text-[#B58ADF]">
-                encontram.
+                depois da ausência.
               </span>
             </h2>
 
             <p className="mt-8 max-w-lg text-base leading-8 text-gray-400">
-              Por que algumas obras permanecem conosco mesmo
-              depois que os créditos sobem? Uma reflexão sobre
-              o impacto do cinema em nossas vidas e na forma
-              como enxergamos o mundo.
+              Uma reflexão sobre Hamnet, o luto e a maneira como
+              a arte encontra formas de preservar aquilo que
+              o tempo não pode devolver.
             </p>
 
             <Link
-              href="/criticas"
+              href="/criticas/hamnet"
               className="mt-10 inline-flex items-center gap-8 border border-[#A875D6] px-7 py-4 text-xs uppercase tracking-widest transition-all duration-300 hover:bg-[#A875D6]/20"
             >
-              Ler ensaio
-              <span>→</span>
+              Ler crítica
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </Reveal>
 
         {/* Fotografia editorial animada */}
         <Reveal delay={0.2}>
-          <div className="group relative h-[350px] overflow-hidden md:h-[500px]">
+          <Link
+            href="/criticas/hamnet"
+            aria-label="Ler crítica de Hamnet"
+            className="group relative block h-[350px] overflow-hidden md:h-[500px]"
+          >
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
               style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1200')",
+                backgroundImage: "url('/images/hamnet.jpg')",
               }}
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0F]/60 to-transparent" />
 
             <span className="absolute bottom-6 left-6 text-xs uppercase tracking-[0.3em] text-white/70">
-              Cinema também é casa.
+              Hamnet · Chloé Zhao · 2025
             </span>
-          </div>
+          </Link>
         </Reveal>
+
       </div>
     </section>
   );
